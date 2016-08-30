@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+		
+        <!-- Configuration Parameters -->    
+    	
+        <record model="ir.config_parameter" id="slack_sales_channel">
+            <field name="key">slack.sales_channel</field>
+            <field name="value">#sales</field>
+            <field name="group_ids" eval="[(4, ref('base.group_system'))]" />
+        </record>
+        
+        <record model="ir.config_parameter" id="slack_api_token">
+            <field name="key">slack.api_token</field>
+            <field name="value">xoxp-00000000000-00000000000-00000000000-0000000000</field>
+            <field name="group_ids" eval="[(4, ref('base.group_system'))]" />
+        </record>
+</data>
+</openerp>
