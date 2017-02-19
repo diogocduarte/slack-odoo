@@ -14,7 +14,8 @@ Get Notification when u have a new lead
     'depends': ['crm'],
     'category': 'Communication',
     'data': [
-        'slack_data.xml'
+        'data/slack_data.xml',
+        'views/res_config_views.xml'
     ],
     'test': [
     ],

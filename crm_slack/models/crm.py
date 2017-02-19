@@ -17,8 +17,8 @@ class CrmLead(models.Model):
             sudo().get_param('slack.api_token')
 
         msg = vals.get('name', vals.get('contact_name', _('New Lead')))
-        if vals['email_from']:
-            msg += " Email:%s" % vals['email_from']
+
+        msg += " Email:%s" % vals.get('email_from', 'email not supplied')
 
         thcall = threading.Thread(target=self.send_slack_message, args=(api_token, channel, msg))
         thcall.start()
