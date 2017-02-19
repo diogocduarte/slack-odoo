@@ -4,6 +4,8 @@ Odoo Module for Slack. You get a warning on a specific channel, every time a new
 
 ## Configuration
 
+In Sales >> Settings find (Slack integration) or
+
 ir.config_parameter
 
 In Settings > Technical > Parameters > System Parameters
