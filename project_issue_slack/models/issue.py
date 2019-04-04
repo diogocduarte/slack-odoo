@@ -2,7 +2,7 @@
 from odoo import models, fields, api 
 from odoo import exceptions
 import requests
-import simplejson as json
+import json
 
 class Project(models.Model):
     _inherit = ['project.project']
@@ -14,7 +14,6 @@ class Issue(models.Model):
 
     @api.multi
     def write(self, vals):
-        import q
         res = super(Issue, self).write(vals)
 
         if 'issue_stage_id' in vals:
