@@ -13,6 +13,7 @@ Get Notification when u have a new issue
     'category': 'Communication',
     'data': [
         'views.xml',
+        'slack_data.xml',
     ],
     'test': [
     ],

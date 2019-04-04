@@ -6,7 +6,7 @@ import json
 
 class Project(models.Model):
     _inherit = ['project.project']
-    slack_webhook = fields.Char("SlackWebHook")
+    slack_channel = fields.Char("SlackWebHook")
 
 
 class Issue(models.Model):
@@ -18,7 +18,8 @@ class Issue(models.Model):
 
         if 'issue_stage_id' in vals:
             self.ensure_one()
-            webhook = self.project_id.slack_webhook
+            webhook = self.env['ir.config_parameter'].sudo().get_param('slack.webhook')
+            channel = self.project_id.slack_channel
             project_name = self.project_id.name
             issue_id = self.id
             issue_name = self.name
@@ -30,9 +31,12 @@ class Issue(models.Model):
             assigned = self.user_id.name
             link = "https://odoo.interalia.net/web?#id={}&view_type=form&model=project.issue".format(issue_id)
             data = {'payload':json.dumps({
+                'username': 'Odoo Interalia',
+                'icon_url': 'https://i.imgur.com/oujlb7V.png',
+                'channel': channel,
                 'attachments':[
                     {
-                     "pretext": u"Odoo: {}".format(project_name),
+                     "pretext": u"Project: *{}*".format(project_name),
                         "author_name": issue_name,
                         "title": "Issue: {} ".format(issue_id),
                         "title_link":link,
@@ -40,7 +44,7 @@ class Issue(models.Model):
                             'title': 'Stage',
                             'value': state_name,
                             },{
-                                'title': 'Asigned',
+                                'title': 'Assigned to',
                                 'value': assigned
                             }
                         ]
