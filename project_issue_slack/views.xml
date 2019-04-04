@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="project_slack_webhook" model="ir.ui.view">
+            <field name="name">project.project.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+             <field name="arch" type="xml">
+	            <xpath expr="//group[@name='misc']" position="before">
+			<group string="Slack" groups="base.group_no_one">
+				<field name="slack_webhook" string="Slack Webhook"/>
+			</group>
+                   </xpath>
+            </field>
+
+
+    </record>
+  </data>
+</odoo>
