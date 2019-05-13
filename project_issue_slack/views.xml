@@ -6,8 +6,8 @@
             <field name="inherit_id" ref="project.edit_project"/>
              <field name="arch" type="xml">
 		     <xpath expr="//group[@name='misc']" position="before">
-				<group string="Slack">
-					<field name="slack_channel" string="Slack channel"/>
+				<group string="Mattermost">
+					<field name="slack_channel" string="channel"/>
 				</group>
                    </xpath>
             </field>

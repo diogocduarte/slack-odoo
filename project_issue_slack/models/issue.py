@@ -16,7 +16,8 @@ class Issue(models.Model):
     def write(self, vals):
         res = super(Issue, self).write(vals)
 
-        if 'issue_stage_id' in vals:
+        channel = getattr(self.project_id,"slack_channel", None)
+        if channel and 'issue_stage_id' in vals:
             self.ensure_one()
             webhook = self.env['ir.config_parameter'].sudo().get_param('slack.webhook')
             channel = self.project_id.slack_channel
@@ -36,6 +37,7 @@ class Issue(models.Model):
                 'channel': channel,
                 'attachments':[
                     {
+		     "fallback": u"{} {} {}".format(project_name, assigned, state_name),
                      "pretext": u"Project: *{}*".format(project_name),
                         "author_name": issue_name,
                         "title": "Issue: {} ".format(issue_id),
