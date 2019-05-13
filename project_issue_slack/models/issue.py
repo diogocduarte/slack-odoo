@@ -16,8 +16,7 @@ class Issue(models.Model):
     def write(self, vals):
         res = super(Issue, self).write(vals)
 
-        channel = getattr(self.project_id,"slack_channel", None)
-        if channel and 'issue_stage_id' in vals:
+        if "project_id" in self  and 'issue_stage_id' in vals:
             self.ensure_one()
             webhook = self.env['ir.config_parameter'].sudo().get_param('slack.webhook')
             channel = self.project_id.slack_channel
