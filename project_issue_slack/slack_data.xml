@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+		
+        <!-- Configuration Parameters -->    
+            
+        <record model="ir.config_parameter" id="slack_webhook">
+            <field name="key">slack.webhook</field>
+	    <field name="value">https://url</field>
+            <field name="group_ids" eval="[(4, ref('base.group_system'))]" />
+        </record>
+</data>
+</openerp>
